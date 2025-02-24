@@ -12,12 +12,16 @@ import { Label } from "@radix-ui/react-label"
 import { Input } from "../ui/input"
 import { Button } from '../ui/button'
 import { useState } from "react"
-// import axios from "axios"
-import { postData } from "@/helpers/crudOperations/postData"
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "../ui/alert-dialog"
+import { putData } from "@/helpers/crudOperations/crudOperations.ts"
 import { toast } from "sonner"
+import { Post } from "../DataTable/columns"
 
-export const CreateRegisterDialog = () => {
+type DeleteRegisterDialogProps = {
+  id: string;
+  fetchData: () => void;
+};
+
+export const EditRegisterDialog = ({ id,fetchData }: DeleteRegisterDialogProps) => {
 
     const [body, setBody] = useState<string>("")
     const [title, setTitle] = useState<string>("")
@@ -42,16 +46,15 @@ export const CreateRegisterDialog = () => {
         <>
             <Dialog>
                 <DialogTrigger asChild>
-                    {/* <Button onClick={() => (setIdToLocalStorage(id))} variant="ghost"> */}
-                    <Button>
-                        Crear
+                    <Button variant="ghost" className="w-full">
+                        Editar
                     </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
-                        <DialogTitle>Ingresar informacion</DialogTitle>
+                        <DialogTitle>Editar campos</DialogTitle>
                         <DialogDescription>
-                            Ingrese los datos que desea guardar.
+                            Realize los cambios necesarios y al terminar de clic en aceptar.
                         </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
@@ -70,27 +73,13 @@ export const CreateRegisterDialog = () => {
                     </div>
                     <DialogFooter>
                         <DialogClose asChild>
-                            {/* <Button onClick={() => postData(body, title)
-                            } type="submit">Guardar registro</Button> */}
-                            <AlertDialog>
-                                <AlertDialogTrigger asChild>
-                                    <Button >Guardar registro</Button>
-                                </AlertDialogTrigger>
-                                <AlertDialogContent>
-                                    <AlertDialogHeader>
-                                        <AlertDialogTitle>Estas seguro?</AlertDialogTitle>
-                                    </AlertDialogHeader>
-                                    <AlertDialogFooter>
-                                        <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                                        <AlertDialogAction onClick={() => {
-                                            postData(body, title)
-                                            toast.success("Registro creado exitosamente", {
-                                                position: "top-right",
-                                            })
-                                        }}>Continuar</AlertDialogAction>
-                                    </AlertDialogFooter>
-                                </AlertDialogContent>
-                            </AlertDialog>
+                            <Button onClick={async() => {
+                                putData(id, body, title, fetchData)
+                                toast.info("Registro editado exitosamente", {
+                                    position: "top-right",
+                                })
+                            }
+                            } type="submit">Guardar cambios</Button>
                         </DialogClose>
                     </DialogFooter>
                 </DialogContent>

@@ -11,7 +11,7 @@ export const PagesRoutes = () => {
         <>
             <div className="flex flex-col min-h-screen">
                 <Header />
-                <div className="flex justify-center items-center pt-20">
+                <div className="flex justify-center items-center pt-8">
                     <div className="grid h-screen[calc(100vh-2rem)] place-items-center">
                         <Routes>
                             <Route path="/" element={<ButtonPage />} />

@@ -4,9 +4,9 @@ import { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal } from "lucide-react"
 import { Button } from "../ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu"
-import { EditRegisterDialog } from "../Dialog/editRegisterDialog"
+import { EditRegisterDialog } from "../Dialogs/editRegisterDialog"
 // import { deleteData } from "@/helpers/crudOperations/deleteData"
-import { DeleteRegisterDialog } from "../Dialog/deleteRegisterDialog"
+import { DeleteRegisterDialog } from "../Dialogs/deleteRegisterDialog"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -17,7 +17,7 @@ export type Post = {
     body: string
 }
 
-export const columns: ColumnDef<Post>[] = [
+export const columns = (fetchData: () => void): ColumnDef<Post>[] => [
     {
         accessorKey: "id",
         header: "Post ID",
@@ -32,6 +32,7 @@ export const columns: ColumnDef<Post>[] = [
     },
     {
         id: "actions",
+        header: "Actions",
         cell: ({ row }) => {
             const post = row.original; // Obtener los datos de la fila actual
             return (
@@ -41,13 +42,10 @@ export const columns: ColumnDef<Post>[] = [
                             <MoreHorizontal />
                         </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="justify-items-center">
-                        <EditRegisterDialog id={post.id} />
+                    <DropdownMenuContent align="center" className="flex flex-col items-center">
+                        <EditRegisterDialog id={post.id} fetchData={fetchData} />
                         <DropdownMenuSeparator />
-                        <DeleteRegisterDialog id={post.id} />
-                        {/* <Button onClick={()=>deleteData(post.id.toString())} variant="ghost">
-                            Delete
-                        </Button> */}
+                        <DeleteRegisterDialog id={post.id} fetchData={fetchData} />
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

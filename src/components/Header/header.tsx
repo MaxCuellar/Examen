@@ -7,9 +7,9 @@ import { NavItem } from "./nav-item";
 
 export function Header() {
     return (
-        <header>
-            <div className="md:mt-4 container mx-auto">
-                <div className="mx-2 md:mx-10 border-x   px-6">
+        <header className="sticky top-0 z-5 shadow-md">
+            <div className="md:mt-auto container mx-auto">
+                <div className="mx-2 md:mx-10 border-x px-6">
                     <div className="flex justify-between items-center w-full py-4 border-b">
                         <div className="flex-1">
                             <Link to="/" className="flex items-center gap-3">
@@ -27,7 +27,7 @@ export function Header() {
                             </nav>
                         </div>
                         <MobileNavbar>
-                            <div className="rounded-b-lg bg-background py-4 container text-foreground shadow-xl mt-6">
+                            <div className="rounded-b-lg bg-background py-4 container text-foreground shadow-xl mt-4">
                                 <nav className="flex flex-col gap-1 pt-2">
                                     <MobileNavItem href="/button" label="Button" />
                                     <MobileNavItem href="/counter" label="Counter" />

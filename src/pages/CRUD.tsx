@@ -1,41 +1,38 @@
-// import { useEffect, useState } from "react";
-import { columns, } from "@/components/DataTable/columns";
+import { useEffect, useState } from "react";
+import { columns, Post, } from "@/components/DataTable/columns";
 import { DataTable } from "@/components/DataTable/data-table";
-import { CreateRegisterDialog } from "@/components/Dialog/createRegisterDialog";
-// import { Button } from "@/components/ui/button";
-import { useFetch } from "@/hooks/useFetch";
+import { CreateRegisterDialog } from "@/components/Dialogs/createRegisterDialog";
+import { getData } from "@/helpers/crudOperations/crudOperations.ts";
 
 export const CRUD = () => {
-  const url = `https://67bb8b11ed4861e07b37aba9.mockapi.io/Crud`;
 
-  // const [data, setData] = useState<Post[]>([]);
-  // const [loading, setLoading] = useState(true);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const result = await getData();
-  //     setData(result);
-  //     setLoading(false);
-  //   };
+  const [data, setData] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  //   fetchData();
-  // }, []);
+  const fetchData = async () => {
+    const result = await getData();
+    setData(result);
+    setLoading(false);
+  };
 
-  const { data, isLoading } = useFetch(url)
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>
-      <div className="container mx-auto py-10">
-        {isLoading ? (
+      <div className="mx-auto container">
+        {loading ? (
           <p>Cargando datos...</p>
         ) : (
-          <>
+          <div className="">
             <div className="flex justify-end mb-4">
-              <CreateRegisterDialog/>
+              <CreateRegisterDialog fetchData={fetchData} />
             </div>
-            <DataTable columns={columns} data={data}/>
-          </>
+            <DataTable columns={columns(fetchData)} data={data} />
+          </div>
         )}
       </div>
     </>
-  );
+  );  
 };
