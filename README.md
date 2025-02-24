@@ -1,50 +1,44 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Examen de Front-End  
+## Descripción  
+Examen de front - end para practicas AduaNet realizado con React + Vite + TypeScript, consta de 4 opciones en el navbar para acceder a cada ejercicio propuesto en el examen.
+# Estado  
+Funcional, falta mejorar el uso de las funciones CRUD con useHookForm para la validación correcta de las entradas y modificaciones a los registros y Zustand para manejar el estado global de estos de manera mas sencilla.  
 
-Currently, two official plugins are available:
+### Pasos para clonar y ejecutar el proyecto:
+#### 1.- Clonar el proyecto con el siguiente comando:  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```console
+git clone https://github.com/MaxCuellar/Examen.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+#### 3.- Instalar las dependencias:
+```console
+npm install  
 ```
+
+#### 4.- Ejecutar el proyecto en modo de desarrollo:
+```console
+npm run dev
+```
+
+## Dependencias principales
+**React Router**  
+Usado para el enrutamiento entre las opciones de la página.
+
+**Typescript**  
+Usado para el tipado estricto en el código.  
+
+**Tailwind css**  
+Usado para el manejo de estilos de los componentes.
+
+**Shadcn**  
+Usado por la facilidad de uso e incorporación de los componentes que brinda en conjunto con tailwindcss.
+
+---
+
+*Maximiliano Cuellar de Jesús*
+
+
+
+
