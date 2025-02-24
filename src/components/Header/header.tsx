@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import { MobileNavItem } from "./mobile-nav-item";
+import { MobileNavbar } from "./mobile-navbar";
+import { NavItem } from "./nav-item";
 
-import { NavItem } from "@/components/ui/nav-item";
-import { MobileNavbar } from "@/components/ui/mobile-navbar";
-import { MobileNavItem } from "@/components/ui/mobile-nav-item";
+
 
 export function Header() {
     return (

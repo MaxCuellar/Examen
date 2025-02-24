@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { ButtonPage } from "./ButtonPage";
 import { Counter } from "./Counter";
 import { CRUD } from "./CRUD";
-import { Header } from "@/components/ui/header";
+import { Header } from "../components/Header/header";
 import { StaticList } from "./StaticList";
 
 
